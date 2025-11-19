@@ -43,15 +43,15 @@ export function ContactPage() {
   const campusLocations = [
     {
       name: 'City Campus',
-      address: '123 Oak Street, Education District',
-      city: 'Your City, State 12345',
-      mapUrl: 'https://www.google.com/maps',
+      address: '2-10, Rajeevnagar Colony, Padalapeta, Jammunarayanapuram',
+      city: 'Vizianagaram, Pedathadivada, Andhra Pradesh 535006',
+      mapUrl: 'https://maps.app.goo.gl/MC9G1MdTNcMoEbEa9?g_st=iw',
     },
     {
       name: 'Pusapatirega Campus',
-      address: '456 Education Avenue, School Zone',
-      city: 'Your City, State 12345',
-      mapUrl: 'https://www.google.com/maps',
+      address: 'Oakland School, Pusapatirega',
+      city: 'Andhra Pradesh, 535204',
+      mapUrl: 'https://maps.app.goo.gl/m4qVQ3r3TyKTypDp9?g_st=ipc',
     },
   ];
 
@@ -223,7 +223,7 @@ export function ContactPage() {
                   For immediate assistance, reach out to us via WhatsApp 
                 </p>
                 <a
-                  href="https://wa.me/1234567890"
+                  href="https://wa.me/9492855523"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold text-center transition-colors"
