@@ -9,7 +9,7 @@ export function FloatingActions({ onApply }: FloatingActionsProps) {
     <>
       <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-40">
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/9492855523"
           target="_blank"
           rel="noopener noreferrer"
           className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group"
@@ -19,7 +19,7 @@ export function FloatingActions({ onApply }: FloatingActionsProps) {
         </a>
 
         <a
-          href="tel:+1234567890"
+          href="tel:+919492855523"
           className="w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
           aria-label="Call Us"
         >

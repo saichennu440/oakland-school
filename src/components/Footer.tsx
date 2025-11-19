@@ -140,7 +140,7 @@ export function Footer({currentPage = 'footer', onNavigate }: FooterProps) {
                 <span>+91 9121009935</span>
               </a>
               <a
-                href="mailto:info@oaklandschools.edu"
+                href="mailto:oaklandearlyexp@gmail.com"
                 className="flex items-start space-x-3 text-gray-400 hover:text-white transition-colors"
               >
                 <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />

@@ -35,8 +35,8 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
   };
 
   const campusText = {
-    playschool: 'Playschool',
-    regular: 'Regular School',
+    playschool: 'City Campus',
+    regular: 'Pusapatirega Campus',
   };
 
   // Choose logo based on campus (fallback to regular logo)
@@ -59,7 +59,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
               src={logoSrc}
               alt={logoAlt}
             />
-            <div className="hidden sm:block">
+            <div className=" ">
               <div className="text-xl font-bold text-gray-900" >Oakland Schools</div>
               <div className="text-xs text-gray-500">Strong Foundations. Endless Horizons.</div>
             </div>
@@ -101,11 +101,12 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
                       onClick={() => handleCampusSwitch('playschool')}
                       className="w-full px-4 py-3 text-left hover:bg-lime-50 transition-colors flex items-center space-x-3"
                     >
-                      <div className="w-8 h-8 bg-gradient-to-br from-lime-400 to-yellow-400 rounded-lg flex items-center justify-center">
-                        <span className="text-xs text-white font-bold">P</span>
+                      <div className=" flex items-center justify-center">
+                        
+                        <img src="/playschoollogo.jpg" alt="Playschool Logo" className="w-8 h-8  rounded-full" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-gray-900">Playschool</div>
+                        <div className="text-sm font-semibold text-gray-900">City Campus</div>
                         <div className="text-xs text-gray-500">Nursery, LKG, UKG</div>
                       </div>
                     </button>
@@ -113,11 +114,11 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
                       onClick={() => handleCampusSwitch('regular')}
                       className="w-full px-4 py-3 text-left hover:bg-blue-50 transition-colors flex items-center space-x-3"
                     >
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-900 to-green-700 rounded-lg flex items-center justify-center">
-                        <span className="text-xs text-white font-bold">R</span>
+                      <div className="flex items-center justify-center">
+                        <img src="/oakland_logo.jpg" alt="Regular Campus Logo" className="w-8 h-8 rounded-full" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-gray-900">Regular School</div>
+                        <div className="text-sm font-semibold text-gray-900">Pusapatirega Campus</div>
                         <div className="text-xs text-gray-500">1st to 10th Grade</div>
                       </div>
                     </button>

@@ -1,4 +1,4 @@
-import { GraduationCap, Award, BookOpen, Microscope, Trophy, Users2, ArrowRight, TrendingUp, Target, Globe } from 'lucide-react';
+import {  Award, BookOpen, Microscope, Trophy, Users2, ArrowRight, Target, Globe, ShieldEllipsis, Lightbulb, TrendingUp, GraduationCap } from 'lucide-react';
 
 interface RegularSchoolHomeProps {
   onNavigate: (page: string) => void;
@@ -8,23 +8,44 @@ export function RegularSchoolHome({ onNavigate }: RegularSchoolHomeProps) {
   const highlights = [
     {
       icon: Award,
-      title: 'Academic Excellence',
-      description: 'Comprehensive curriculum aligned with national standards',
+      title: 'Strong academics with proven results',
+      description: 'Delivering consistent academic excellence with measurable outcomes.',
     },
     {
       icon: Microscope,
-      title: 'Modern Labs',
-      description: 'State-of-the-art science, computer, and language labs',
+      title: 'Values, manners, and discipline in daily life',
+      description: 'Instilling strong values and disciplined habits in every child.',
     },
     {
       icon: Trophy,
-      title: 'Sports & Activities',
+      title: 'spacious playground and facilities at Pusapatirega',
       description: 'Extensive sports facilities and co-curricular programs',
     },
     {
       icon: Users2,
       title: 'Expert Faculty',
       description: 'Experienced educators dedicated to student success',
+    },
+
+     {
+      icon: ShieldEllipsis,
+      title: 'Safe and caring environment',
+      description: 'Providing a secure, nurturing space where students feel protected and supported.',
+    },
+     {
+      icon: Lightbulb,
+      title: 'Activity-based and practical learning',
+      description: 'Learning through hands-on activities that build real-world understanding.',
+    },
+     {
+      icon: TrendingUp,
+      title: 'Experienced, humble leadership',
+      description: 'Guided by seasoned leaders who lead with humility and vision.',
+    },
+     {
+      icon: GraduationCap,
+      title: 'Modern CBSE pathway in the city campus',
+      description: 'Offering a contemporary CBSE curriculum in a centrally located campus.',
     },
   ];
 
@@ -35,10 +56,11 @@ export function RegularSchoolHome({ onNavigate }: RegularSchoolHomeProps) {
   ];
 
   const achievements = [
-    { metric: '95%+', label: 'Board Pass Rate' },
-    { metric: '50+', label: 'Academic Awards' },
-    { metric: '20+', label: 'Years of Excellence' },
-    { metric: '100%', label: 'Student Satisfaction' },
+    { metric: '2', label: `Campuses in Vizianagaram` },
+    { metric: '1600+', label: ' Students (and growing)' },
+    { metric: '200+', label: ' Children receiving free education' },
+    { metric: '20+', label: 'Years of leadership experience' },
+    { metric: '30+', label: 'Villages served' },
   ];
 
   const facilities = [
@@ -74,7 +96,7 @@ export function RegularSchoolHome({ onNavigate }: RegularSchoolHomeProps) {
           <div className="max-w-3xl">
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
               <GraduationCap className="w-4 h-4" />
-              <span className="text-sm font-medium">Oakland Regular School</span>
+              <span className="text-sm font-medium">Oakland School Vizianagaram</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -82,7 +104,7 @@ export function RegularSchoolHome({ onNavigate }: RegularSchoolHomeProps) {
             </h1>
 
             <p className="text-xl md:text-2xl mb-8 text-white/90 font-light">
-              Empowering students from 1st to 10th grade with knowledge, values, and skills for a successful future.
+              Oakland Schools offers high-quality English-medium education in Vizianagaram with State Board and CBSE pathways, activity-based learning, and strong values.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -104,7 +126,7 @@ export function RegularSchoolHome({ onNavigate }: RegularSchoolHomeProps) {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {achievements.map((achievement, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold mb-2">{achievement.metric}</div>
@@ -119,7 +141,7 @@ export function RegularSchoolHome({ onNavigate }: RegularSchoolHomeProps) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Why Oakland Regular School?
+              Why Choose Oakland School?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Comprehensive education that prepares students for academic and personal success

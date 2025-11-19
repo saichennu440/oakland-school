@@ -26,29 +26,29 @@ export function ContactPage() {
     {
       icon: Phone,
       title: 'Phone',
-      details: ['+1 (234) 567-8900', '+1 (234) 567-8901'],
+      details: ['94928 55523', '91210 09935'],
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@oaklandschools.edu', 'admissions@oaklandschools.edu'],
+      details: ['oaklandearlyexp@gmail.com'],
     },
     {
       icon: Clock,
       title: 'Office Hours',
-      details: ['Monday - Friday: 8:00 AM - 4:00 PM', 'Saturday: 9:00 AM - 1:00 PM'],
+      details: ['Monday - Friday: 8:00 AM - 6:00 PM', 'Saturday: 9:00 AM - 6:00 PM'],
     },
   ];
 
   const campusLocations = [
     {
-      name: 'Playschool Campus',
+      name: 'City Campus',
       address: '123 Oak Street, Education District',
       city: 'Your City, State 12345',
       mapUrl: 'https://www.google.com/maps',
     },
     {
-      name: 'Regular School Campus',
+      name: 'Pusapatirega Campus',
       address: '456 Education Avenue, School Zone',
       city: 'Your City, State 12345',
       mapUrl: 'https://www.google.com/maps',
@@ -220,7 +220,7 @@ export function ContactPage() {
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
                 <h3 className="text-2xl font-bold mb-4">Quick Contact</h3>
                 <p className="text-gray-300 mb-6">
-                  For immediate assistance, reach out to us via WhatsApp
+                  For immediate assistance, reach out to us via WhatsApp 
                 </p>
                 <a
                   href="https://wa.me/1234567890"
@@ -228,7 +228,7 @@ export function ContactPage() {
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-bold text-center transition-colors"
                 >
-                  WhatsApp Us
+                  WhatsApp Us 
                 </a>
               </div>
             </div>
@@ -244,7 +244,7 @@ export function ContactPage() {
               Experience our facilities firsthand. Schedule a campus tour and meet our dedicated team.
             </p>
             <button className="px-8 py-4 bg-white text-blue-900 rounded-lg font-bold hover:shadow-2xl transition-all">
-              Schedule a Tour
+              Schedule a Tour 
             </button>
           </div>
         </div>
