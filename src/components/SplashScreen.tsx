@@ -11,8 +11,9 @@ export function SplashScreen({ onSelectCampus }: SplashScreenProps) {
       <div className="max-w-4xl w-full text-center space-y-12 animate-fade-in">
         <div className="space-y-4">
           <div className="flex items-center justify-center mb-8">
-            <div className="w-24 h-24 bg-gradient-to-br from-blue-900 to-green-700 rounded-2xl flex items-center justify-center shadow-xl">
-              <School className="w-14 h-14 text-white" />
+            <div className="w-26 h-26 bg-gradient-to-br from-blue-900 to-green-700 rounded-2xl flex items-center justify-center shadow-xl">
+              <img src="/playschoollogo.jpg" alt="Playschool Icon" className="w-24 h-24" />
+              <img src="/oakland_logo.jpg" alt="Playschool Icon" className="w-24 h-24" />
             </div>
           </div>
 
@@ -34,12 +35,12 @@ export function SplashScreen({ onSelectCampus }: SplashScreenProps) {
 
             <div className="relative space-y-4">
               <div className="w-16 h-16 bg-gradient-to-br from-lime-400 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                <Users className="w-8 h-8 text-white" />
+                <img src="/playschoollogo.jpg" alt="Playschool Icon" className="w-16 h-16" />
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Playschool</h2>
-                <p className="text-lg text-gray-600">Nursery • LKG • UKG</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">City Campus</h2>
+                <p className="text-lg text-gray-600">Nursery to Grade 8</p>
               </div>
 
               <p className="text-sm text-gray-500">
@@ -62,11 +63,11 @@ export function SplashScreen({ onSelectCampus }: SplashScreenProps) {
 
             <div className="relative space-y-4">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-900 to-green-700 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                <School className="w-8 h-8 text-white" />
+                <img src="/oakland_logo.jpg" alt="Playschool Icon" className="w-16 h-16" />
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Regular School</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Pusapatirega Campus</h2>
                 <p className="text-lg text-gray-600">1st to 10th Grade</p>
               </div>
 
