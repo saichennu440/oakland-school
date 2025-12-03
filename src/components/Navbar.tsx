@@ -205,11 +205,12 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
             <div className="pt-4 border-t border-gray-100 space-y-2">
               <a href="tel:+1234567890" className="flex items-center space-x-3 text-gray-600 hover:text-blue-900">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+1 (234) 567-890</span>
+                <span className="text-sm">+919492855523</span>
+                <span className="text-sm">+919121009935</span>
               </a>
-              <a href="mailto:info@oaklandschools.edu" className="flex items-center space-x-3 text-gray-600 hover:text-blue-900">
+              <a href="mailto:oaklandearlyexp@gmail.com" className="flex items-center space-x-3 text-gray-600 hover:text-blue-900">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">info@oaklandschools.edu</span>
+                <span className="text-sm">oaklandearlyexp@gmail.com</span>
               </a>
             </div>
           </div>
