@@ -55,7 +55,10 @@ export default function AdminPanel() {
       // update
       const res = await fetch(`${API_BASE}/${payload.id}`, {
         method: "PUT",
-        headers,
+        headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${import.meta.env.VITE_ADMIN_KEY}`,
+      },
         body: JSON.stringify(payload),
       });
       const json = await res.json();
