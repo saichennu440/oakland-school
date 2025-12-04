@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { supabase } from "../lib/supabase";
+import { EventItem } from "../types";
 import {
   Award,
   BookOpen,
@@ -28,6 +30,25 @@ export default function RegularSchoolHome({ onNavigate }: { onNavigate: (page: s
     '/hero/hero2.png', 
     '/hero/hero3.webp',
   ];
+  const [events, setEvents] = useState<EventItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadEvents();
+  }, []);
+
+  const loadEvents = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("events")
+      .select("*")
+      .order("start_date", { ascending: true })
+      .limit(3); // show only 3 upcoming events
+    if (error) console.error("Error loading events:", error);
+    setEvents(data ?? []);
+    setLoading(false);
+  };
+
 
   const [slide, setSlide] = useState(0);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -356,16 +377,50 @@ export default function RegularSchoolHome({ onNavigate }: { onNavigate: (page: s
 
       {/* CTA / Events */}
       <section className="py-16 bg-blue-900 text-white">
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <Globe className="w-12 h-12 mx-auto mb-4" />
-          <h3 className="text-3xl font-bold mb-4">Upcoming Events</h3>
-          <p className="mb-6 text-white/90">Open Day • Sports Meet • Parent Workshops — stay tuned for dates and registration details.</p>
-          <div className="flex justify-center gap-4">
-            <button onClick={() => onNavigate('admissions')} className="px-6 py-3 bg-amber-100 text-amber-900 font-semibold rounded">Admissions</button>
-            <button onClick={() => onNavigate('events')} className="px-6 py-3 border border-white/30 rounded">Events</button>
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <Globe className="w-12 h-12 mx-auto mb-4" />
+        <h3 className="text-3xl font-bold mb-4">Upcoming Events</h3>
+        {loading ? (
+          <p className="mb-6 text-white/90">Loading events…</p>
+        ) : events.length === 0 ? (
+          <p className="mb-6 text-white/90">No upcoming events yet. Stay tuned!</p>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
+            {events.map((ev) => (
+              <div key={ev.id} className="bg-white/10 rounded p-4 flex flex-col items-start">
+                {ev.image_url && (
+                  <img
+                    src={ev.image_url}
+                    alt={ev.title}
+                    className="w-full h-40 object-cover rounded mb-3"
+                  />
+                )}
+                <h4 className="font-semibold text-lg">{ev.title}</h4>
+                <p className="text-sm text-white/80">{ev.location}</p>
+                <p className="text-sm text-white/80">
+                  {ev.start_date ? new Date(ev.start_date).toLocaleDateString() : ""}
+                </p>
+              </div>
+            ))}
           </div>
+        )}
+
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() => onNavigate("admissions")}
+            className="px-6 py-3 bg-amber-100 text-amber-900 font-semibold rounded"
+          >
+            Admissions
+          </button>
+          <button
+            onClick={() => onNavigate("events")}
+            className="px-6 py-3 border border-white/30 rounded"
+          >
+            Events
+          </button>
         </div>
-      </section>
+      </div>
+    </section>
 
     
     </div>

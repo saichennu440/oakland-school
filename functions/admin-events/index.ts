@@ -44,10 +44,12 @@ serve(async (req) => {
 
     // Path parsing
     const parts = url.pathname.split("/").filter(Boolean);
+    const id = parts.length > 3 ? parts[parts.length - 1] : null;
+
     // /functions/v1/bright-endpoint → ["functions","v1","bright-endpoint"]
     // /functions/v1/bright-endpoint/123 → ["functions","v1","bright-endpoint","123"]
 
-    const id = parts.length >= 4 ? parts[3] : null;
+    
 
     const method = req.method.toUpperCase();
 

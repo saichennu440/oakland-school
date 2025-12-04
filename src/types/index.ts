@@ -1,6 +1,7 @@
 export type Campus = 'playschool' | 'regular';
 
 export type EventItem = {
+  image_url: string | undefined;
   id: string;
   title: string;
   description?: string;
