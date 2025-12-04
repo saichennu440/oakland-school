@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { EventItem } from "../types";
 
-const API_BASE = import.meta.env.REACT_APP_ADMIN_EVENTS_FN!;
+const API_BASE = import.meta.env.VITE_ADMIN_EVENTS_FN!;
 const LOCAL_KEY = import.meta.env.VITE_ADMIN_KEY!;
 
 export default function AdminPanel() {
