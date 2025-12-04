@@ -140,7 +140,7 @@ export default function AdminPanel() {
           <button
             onClick={() =>
               setEditing({
-                id: "",
+                
                 title: "",
                 campus: "regular",
                 description: "",
