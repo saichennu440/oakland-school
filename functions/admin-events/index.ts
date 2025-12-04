@@ -33,7 +33,11 @@ serve(async (req) => {
   try {
     // ----- CORS preflight -----
     if (req.method === "OPTIONS") {
-      return new Response("ok", { status: 204, headers: corsHeaders });
+      return new Response("ok", { status: 204, headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type, x-admin-key",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    } });
     }
 
     const url = new URL(req.url);

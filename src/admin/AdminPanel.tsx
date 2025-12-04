@@ -42,8 +42,9 @@ export default function AdminPanel() {
 
     const res = await fetch(API_BASE, {
       headers: {
-        "Authorization": `Bearer ${localStorage.getItem(LOCAL_KEY)}`,
-      }
+  "x-admin-key": localStorage.getItem(LOCAL_KEY) || "",
+}
+
     });
 
     const json = await res.json();
@@ -66,7 +67,8 @@ export default function AdminPanel() {
       method: isUpdate ? "PUT" : "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem(LOCAL_KEY)}`
+        "x-admin-key": localStorage.getItem(LOCAL_KEY) || ""
+
       },
       body: JSON.stringify(payload),
     });
@@ -95,7 +97,7 @@ export default function AdminPanel() {
     const res = await fetch(`${API_BASE}/${id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${localStorage.getItem(LOCAL_KEY)}`
+        "x-admin-key": localStorage.getItem(LOCAL_KEY) || ""
       },
     });
 
