@@ -1,5 +1,18 @@
 export type Campus = 'playschool' | 'regular';
 
+export type EventItem = {
+  id: string;
+  title: string;
+  description?: string;
+  campus: string;
+  start_date?: string; // ISO string
+  end_date?: string;
+  location?: string;
+  featured?: boolean;
+  created_by?: string;
+  created_at?: string;
+};
+
 export interface Enquiry {
   id?: string;
   campus: Campus;

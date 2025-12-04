@@ -1,37 +1,65 @@
+// App.tsx
 import { useState, useEffect } from 'react';
 import { CampusProvider, useCampus } from './contexts/CampusContext';
 import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
 import { PlayschoolHome } from './components/PlayschoolHome';
-import { RegularSchoolHome } from './components/RegularSchoolHome';
+import RegularSchoolHome from './components/RegularSchoolHome';
 import { AboutPage } from './components/AboutPage';
 import { AdmissionsPage } from './components/AdmissionsPage';
 import { AcademicsPage } from './components/AcademicsPage';
 import { GalleryPage } from './components/GalleryPage';
-import { EventsPage } from './components/EventsPage';
+import  EventsPage  from './components/EventsPage';
 import { ContactPage } from './components/ContactPage';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 
-function AppContent() {
-  const { campus, setCampus, hasSelectedCampus } = useCampus();
-  const [currentPage, setCurrentPage] = useState('home');
+// Admin panel (make this file from the AdminPanel code I provided)
+import AdminPanel from './admin/AdminPanel';
+
+function useHashNavigation(defaultPage = 'home') {
+  const [page, setPage] = useState<string>(() => {
+    const hash = (window.location.hash || '').replace('#', '');
+    return hash ? hash : defaultPage;
+  });
 
   useEffect(() => {
+    const onHashChange = () => {
+      const newHash = (window.location.hash || '').replace('#', '') || defaultPage;
+      setPage(newHash);
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // preserve old behavior on hash change
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, [defaultPage]);
+
+  // navigate and update hash
+  const navigate = (to: string) => {
+    if (to === page) return;
+    window.location.hash = to;
+    // setting hash will trigger the hashchange listener which updates state
+  };
+
+  return { page, navigate, setPage };
+}
+
+function AppContent() {
+  const { campus, setCampus, hasSelectedCampus } = useCampus();
+  // use hash-based navigation so links are shareable and admin can open /#admin
+  const { page: currentPage, navigate: handleNavigate } = useHashNavigation('home');
+
+  useEffect(() => {
+    // optional: scroll to top whenever page changes (keeps original behavior)
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
-  const handleNavigate = (page: string) => {
-    setCurrentPage(page);
-  };
-
   const handleSelectCampus = (selectedCampus: 'playschool' | 'regular') => {
     setCampus(selectedCampus);
-    setCurrentPage('home');
+    handleNavigate('home');
   };
 
   const handleApply = () => {
-    setCurrentPage('admissions');
+    handleNavigate('admissions');
   };
 
   if (!hasSelectedCampus) {
@@ -57,8 +85,12 @@ function AppContent() {
       case 'events':
         return <EventsPage />;
       case 'contact':
-        return <ContactPage />;
+        return <ContactPage onNavigate={handleNavigate} />;
+      case 'admin':
+        // AdminPanel handles its own access key flow (stores key in localStorage/session)
+        return <AdminPanel />;
       default:
+        // fallback to home
         return campus === 'playschool' ? (
           <PlayschoolHome onNavigate={handleNavigate} />
         ) : (

@@ -42,7 +42,7 @@ export function Footer({currentPage = 'footer', onNavigate }: FooterProps) {
   // Choose logo based on campus (fallback to regular logo)
   const logoSrc = campus === 'playschool' ? '/playschoollogo.jpg' : '/oakland_logo.jpg';
   const logoAlt = campus === 'playschool' ? 'Oakland Playschool Logo' : 'Oakland Schools Logo';
-
+  const iframeSrc=campus === 'playschool' ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3792.393755003332!2d83.4309001!3d18.099599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3bfb373ba1de61%3A0x78421c12599dd93b!2sOakland%20Early%20Explorers%20School!5e0!3m2!1sen!2sin!4v1764833798788!5m2!1sen!2sin" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3792.6313178065143!2d83.5440702!3d18.088614600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3bf91f1ec5ac39%3A0xf53ec6ee75de1502!2sOAKLAND%20ENGLISH%20MEDIUM%20SCHOOL!5e0!3m2!1sen!2sin!4v1764833386582!5m2!1sen!2sin";
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -153,6 +153,15 @@ export function Footer({currentPage = 'footer', onNavigate }: FooterProps) {
                   <p>Vizianagram, India, Andhra Pradesh</p>
                 </div>
               </div>
+              <div className="mt-6">
+              <h4 className="font-semibold mb-2">Map</h4>
+              <div className="w-full h-36 bg-white rounded overflow-hidden">
+                {/* Replace with real embed or map iframe */}
+                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                  <iframe src = {iframeSrc}></iframe>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>

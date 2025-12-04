@@ -12,21 +12,21 @@ export function GalleryPage() {
   const galleryImages = [
     {
       id: 1,
-      url: 'https://images.pexels.com/photos/8613311/pexels-photo-8613311.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: '/playschool/Home9.jpg',
       title: 'Classroom Learning',
       category: 'academics',
       campus: 'both',
     },
     {
       id: 2,
-      url: 'https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: '/playschool/home2.jpg',
       title: 'Creative Activities',
       category: 'activities',
       campus: 'playschool',
     },
     {
       id: 3,
-      url: 'https://images.pexels.com/photos/8613319/pexels-photo-8613319.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: '/playschool/home6.jpg',
       title: 'Science Lab',
       category: 'facilities',
       campus: 'regular',
@@ -40,7 +40,7 @@ export function GalleryPage() {
     },
     {
       id: 5,
-      url: 'https://images.pexels.com/photos/8613302/pexels-photo-8613302.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: '/playschool/Home7.jpg',
       title: 'Annual Function',
       category: 'events',
       campus: 'both',

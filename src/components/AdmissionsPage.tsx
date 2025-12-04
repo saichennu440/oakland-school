@@ -141,7 +141,10 @@ export function AdmissionsPage({ onNavigate }: AdmissionsPageProps) {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+              action="https://formspree.io/f/xanogwrj"
+                   method="POST" 
+             >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="parent_name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -311,13 +314,13 @@ export function AdmissionsPage({ onNavigate }: AdmissionsPageProps) {
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
                 <h3 className="text-2xl font-bold mb-6">Contact Admissions Office</h3>
                 <div className="space-y-4">
-                  <a href="tel:+1234567890" className="flex items-center space-x-3 hover:text-lime-400 transition-colors">
+                  <a href="tel:+919492855523" className="flex items-center space-x-3 hover:text-lime-400 transition-colors">
                     <Phone className="w-5 h-5" />
-                    <span>+1 (234) 567-890</span>
+                    <span>+9194928 55523</span>
                   </a>
-                  <a href="mailto:admissions@oaklandschools.edu" className="flex items-center space-x-3 hover:text-lime-400 transition-colors">
+                  <a href="mailto:oaklandearlyexp@gmail.com" className="flex items-center space-x-3 hover:text-lime-400 transition-colors">
                     <Mail className="w-5 h-5" />
-                    <span>admissions@oaklandschools.edu</span>
+                    <span>oaklandearlyexp@gmail.com</span>
                   </a>
                   <button
                     onClick={() => onNavigate('contact')}

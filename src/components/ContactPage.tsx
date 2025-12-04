@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { useCampus } from '../contexts/CampusContext';
 import { useState } from 'react';
 
-export function ContactPage() {
+export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const { campus } = useCampus();
   const [formData, setFormData] = useState({
     name: '',
@@ -89,7 +89,9 @@ export function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form action="https://formspree.io/f/xanogwrj"
+                   method="POST"
+                    className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                     Full Name *
@@ -243,7 +245,7 @@ export function ContactPage() {
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Experience our facilities firsthand. Schedule a campus tour and meet our dedicated team.
             </p>
-            <button className="px-8 py-4 bg-white text-blue-900 rounded-lg font-bold hover:shadow-2xl transition-all">
+            <button onClick={()=>onNavigate('admissions')} className="px-8 py-4 bg-white text-blue-900 rounded-lg font-bold hover:shadow-2xl transition-all">
               Schedule a Tour 
             </button>
           </div>
