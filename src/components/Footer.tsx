@@ -127,9 +127,9 @@ export function Footer({currentPage = 'footer', onNavigate }: FooterProps) {
               © {new Date().getFullYear()} Oakland Schools. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-400">
-              <button className="hover:text-white transition-colors">Privacy Policy</button>
-              <button className="hover:text-white transition-colors">Terms of Service</button>
-              <button className="hover:text-white transition-colors">Sitemap</button>
+              <button onClick={() => onNavigate('privacy-policy')} className="hover:text-white transition-colors">Privacy Policy</button>
+              <button onClick={() => onNavigate('terms-of-service')} className="hover:text-white transition-colors">Terms of Service</button>
+              {/* <button className="hover:text-white transition-colors">Sitemap</button> */}
             </div>
           </div>
         </div>

@@ -14,6 +14,8 @@ import  EventsPage  from './components/EventsPage';
 import { ContactPage } from './components/ContactPage';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
+import { TermsOfServicePage } from './components/TermsOfServicePage';
 
 // Admin panel (make this file from the AdminPanel code I provided)
 import AdminPanel from './admin/AdminPanel';
@@ -89,6 +91,10 @@ function AppContent() {
         return <EventsPage />;
       case 'contact':
         return <ContactPage onNavigate={handleNavigate} />;
+      case 'privacy-policy':
+        return <PrivacyPolicyPage onNavigate={handleNavigate} />;
+      case 'terms-of-service':
+        return <TermsOfServicePage onNavigate={handleNavigate} />;
       case 'admin':
         // AdminPanel handles its own access key flow (stores key in localStorage/session)
         return <AdminPanel />;
