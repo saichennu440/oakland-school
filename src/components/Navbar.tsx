@@ -44,6 +44,8 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
   const logoSrc = campus === 'playschool' ? '/playschoollogo.png' : '/oakland_logo.png';
   const logoAlt = campus === 'playschool' ? 'Oakland Playschool Logo' : 'Oakland Schools Logo';
 
+  // header height = h-20 (5rem). We use calc(100vh - 5rem) so mobile menu fits & scrolls.
+  const mobileMenuMaxHeight = 'calc(100vh - 5rem)';
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
@@ -61,7 +63,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
               alt={logoAlt}
             />
             <div className=" ">
-              <div className="text-xl font-bold text-gray-900" >Oakland Schools</div>
+              <div className="text-xl font-bold text-gray-900">Oakland Schools</div>
               <div className="text-xs text-gray-500">Strong Foundations. Endless Horizons.</div>
             </div>
           </div>
@@ -103,8 +105,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
                       className="w-full px-4 py-3 text-left hover:bg-lime-50 transition-colors flex items-center space-x-3"
                     >
                       <div className=" flex items-center justify-center">
-                        
-                        <img src="/playschoollogo.png" alt="Playschool Logo" className="w-8 h-8  rounded-full" />
+                        <img src="/playschoollogo.png" alt="Playschool Logo" className="w-8 h-8 rounded-full" />
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-gray-900">City Campus</div>
@@ -138,6 +139,8 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -145,9 +148,19 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
         </div>
       </div>
 
+      {/* Mobile menu: limit height and allow scrolling */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white">
-          <div className="px-4 py-6 space-y-4">
+        <div
+          id="mobile-menu"
+          className="lg:hidden border-t border-gray-100 bg-white"
+          style={{
+            // ensure the menu can scroll when content is tall on small screens
+            maxHeight: mobileMenuMaxHeight,
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch', // smooth native scrolling on iOS
+          }}
+        >
+          <div className="px-4 py-6 space-y-4 pb-8">
             {campus && (
               <div className="pb-4 border-b border-gray-100">
                 <p className="text-xs text-gray-500 mb-2">Current Campus:</p>

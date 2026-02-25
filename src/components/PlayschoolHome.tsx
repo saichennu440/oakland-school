@@ -288,7 +288,7 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-lime-400 via-yellow-400 to-orange-300 text-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-900 to-green-700 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Give Your Child the Best Start?</h2>
           <p className="text-lg mb-8 text-white/95">Schedule a visit to see our campus and meet our caring teachers</p>
