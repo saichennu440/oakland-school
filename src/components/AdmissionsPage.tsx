@@ -340,7 +340,7 @@ export function AdmissionsPage({ onNavigate }: AdmissionsPageProps) {
         <div className="max-w-4xl mx-auto text-center">
           <Calendar className="w-16 h-16 mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Admissions Open for 2024-25
+            Admissions Open for 2025-26
           </h2>
           <p className="text-xl text-white/90 mb-8">
             Limited seats available. Apply now to secure your child's future.
