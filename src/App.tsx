@@ -9,6 +9,7 @@ import { AboutPage } from './components/AboutPage';
 import { AdmissionsPage } from './components/AdmissionsPage';
 import { AcademicsPage } from './components/AcademicsPage';
 import { GalleryPage } from './components/GalleryPage';
+import { SchoolLifePage } from './components/Schoollifepage';
 import  EventsPage  from './components/EventsPage';
 import { ContactPage } from './components/ContactPage';
 import { Footer } from './components/Footer';
@@ -82,6 +83,8 @@ function AppContent() {
         return <AcademicsPage />;
       case 'gallery':
         return <GalleryPage />;
+      case 'schoollife':
+        return <SchoolLifePage />;  
       case 'events':
         return <EventsPage />;
       case 'contact':

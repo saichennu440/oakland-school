@@ -18,6 +18,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
     { label: 'About', page: 'about' },
     { label: 'Admissions', page: 'admissions' },
     { label: 'Academics', page: 'academics' },
+    { label: 'School Life', page: 'schoollife' },
     { label: 'Gallery', page: 'gallery' },
     { label: 'Events', page: 'events' },
     { label: 'Contact', page: 'contact' },
@@ -30,7 +31,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
   };
 
   const campusColors = {
-    playschool: 'from-lime-400 to-yellow-400',
+    playschool: 'bg-gradient-to-r from-blue-900 to-green-700',
     regular: 'from-blue-900 to-green-700',
   };
 
@@ -40,7 +41,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
   };
 
   // Choose logo based on campus (fallback to regular logo)
-  const logoSrc = campus === 'playschool' ? '/playschoollogo.jpg' : '/oakland_logo.jpg';
+  const logoSrc = campus === 'playschool' ? '/playschoollogo.png' : '/oakland_logo.png';
   const logoAlt = campus === 'playschool' ? 'Oakland Playschool Logo' : 'Oakland Schools Logo';
 
 
@@ -103,7 +104,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
                     >
                       <div className=" flex items-center justify-center">
                         
-                        <img src="/playschoollogo.jpg" alt="Playschool Logo" className="w-8 h-8  rounded-full" />
+                        <img src="/playschoollogo.png" alt="Playschool Logo" className="w-8 h-8  rounded-full" />
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-gray-900">City Campus</div>
@@ -115,7 +116,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
                       className="w-full px-4 py-3 text-left hover:bg-blue-50 transition-colors flex items-center space-x-3"
                     >
                       <div className="flex items-center justify-center">
-                        <img src="/oakland_logo.jpg" alt="Regular Campus Logo" className="w-8 h-8 rounded-full" />
+                        <img src="/oakland_logo.png" alt="Regular Campus Logo" className="w-8 h-8 rounded-full" />
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-gray-900">Pusapatirega Campus</div>

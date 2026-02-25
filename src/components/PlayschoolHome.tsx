@@ -82,8 +82,8 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
 
   return (
     <div className="bg-gradient-to-b from-yellow-50 via-white to-lime-50">
-      {/* HERO */}
-       <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-lime-400 via-yellow-400 to-orange-300 text-white overflow-hidden">
+      {/* HERO */}                                              
+       <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-900 to-green-700 text-white overflow-hidden">
   {/* decorative pattern: behind content */}
   <div
     className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzBoLTZ2LTZoNnYtNmg2djZoNnY2aC02djZoLTZ2LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20 pointer-events-none"
@@ -136,39 +136,42 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
   </div>
 </section>
 
-      {/* FEATURES */}
+
      {/* FEATURES — improved image visibility and layout */}
 <section className="py-16 px-4 sm:px-6 lg:px-8 -mt-8">
   <div className="max-w-7xl mx-auto">
+
     <div className="text-center mb-12">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Why Oakland Playschool?</h2>
       <p className="text-lg text-gray-600 max-w-2xl mx-auto">A caring community where your child thrives, learns, and grows.</p>
     </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       {features.map((feature, i) => (
         <div
           key={i}
-          className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 border"
+          className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 overflow-hidden flex flex-col"
         >
-          {/* image wrapper: centered, responsive, fills container */}
-          <div className="w-full flex justify-center mb-4">
-            <div className="w-24 sm:w-28 md:w-32 lg:w-36 h-24 sm:h-28 md:h-32 lg:h-36 rounded-xl overflow-hidden bg-white/5 flex items-center justify-center shadow-inner">
-              <img
-                src={feature.img}                    // replace with your public path
-                alt={feature.title}
-                className="w-full h-full object-cover block "
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+          {/* Full-bleed image at top */}
+          <div className="w-full aspect-[4/3]">
+            <img
+              src={feature.img}
+              alt={feature.title}
+              className="w-full h-full object-cover block"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
-          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 text-center">{feature.title}</h3>
-          <p className="text-gray-600 text-sm text-center">{feature.description}</p>
+          {/* Text below */}
+          <div className="p-4 flex flex-col gap-1">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-900 leading-snug">{feature.title}</h3>
+            <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{feature.description}</p>
+          </div>
         </div>
       ))}
     </div>
+
   </div>
 </section>
 
@@ -234,7 +237,7 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
             {dailyRoutine.map((item, i) => (
               <div key={i} className="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-lime-400 to-yellow-400">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-blue-900 to-green-700">
                     <span className="text-white text-xs font-bold">{item.time.split(' ')[0]}</span>
                   </div>
                   <div>

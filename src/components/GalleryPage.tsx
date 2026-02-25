@@ -103,7 +103,7 @@ export function GalleryPage() {
 
   return (
     <div className="bg-white">
-      <section className={`py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br ${campus === 'playschool' ? 'from-lime-400 to-yellow-400' : 'from-blue-900 to-green-700'} text-white`}>
+      <section className={`py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br ${campus === 'playschool' ? 'bg-gradient-to-r from-blue-900 to-green-700' : 'from-blue-900 to-green-700'} text-white`}>
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Gallery</h1>
           <p className="text-xl text-white/90">
@@ -122,7 +122,7 @@ export function GalleryPage() {
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 capitalize ${
                   activeCategory === category
                     ? campus === 'playschool'
-                      ? 'bg-gradient-to-r from-lime-400 to-yellow-400 text-white shadow-lg'
+                      ? 'bg-gradient-to-r bg-gradient-to-r from-blue-900 to-green-700 text-white shadow-lg'
                       : 'bg-gradient-to-r from-blue-900 to-green-700 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}

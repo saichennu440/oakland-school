@@ -34,7 +34,7 @@ export function SplashScreen({ onSelectCampus }: SplashScreenProps) {
             <div className="absolute inset-0 bg-gradient-to-br from-lime-400/10 to-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <div className="relative space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-lime-400 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-900 to-green-700 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
                 <img src="/playschoollogo.jpg" alt="Playschool Icon" className="w-16 h-16" />
               </div>
 

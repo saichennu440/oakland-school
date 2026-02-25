@@ -253,7 +253,23 @@ export default function RegularSchoolHome({ onNavigate }: { onNavigate: (page: s
         <div className="grid md:grid-cols-3 gap-8 items-center">
           <div className="md:col-span-2">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Welcome from our Correspondent</h2>
-            <p className="text-gray-700 mb-6">At Oakland, our mission is to build character and curiosity through compassionate teaching and practical learning. Rooted in the values of the Bethany Mission Society, we strive to create a safe, inclusive and inspiring environment for every child.</p>
+            <p className="text-gray-700 mb-6">At Oakland Schools, education is viewed as a lifelong foundation
+rather than a short-term pursuit.<br/>
+Our commitment has always been to provide children with an
+environment that nurtures discipline, curiosity, moral values, and
+academic strength. In an age of constant change, Oakland stands
+firm in its belief that true education balances tradition with 
+progress, structure with creativity, and ambition with
+responsibility.<br/>
+As we continue to grow and strengthen our academic offerings,
+our focus remains clear, preparing children not only for
+examinations, but for life. I extend my gratitude to parents for their
+trust and to our educators for their dedication.<br/>
+Together, we are shaping futures with purpose and integrity.<br/>
+Dr. Srinivasa Rao. Ch, Ph.D<br/>
+Correspondent, <br/>
+Oakland Schools<br/>Vizianagaram</p>
+
             <button onClick={() => onNavigate('about')} className="px-5 py-3 bg-amber-100 text-amber-900 rounded-md font-semibold shadow">Read full message</button>
           </div>
 

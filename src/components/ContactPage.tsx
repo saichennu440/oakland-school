@@ -57,7 +57,7 @@ export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void
 
   return (
     <div className="bg-white">
-      <section className={`py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br ${campus === 'playschool' ? 'from-lime-400 to-yellow-400' : 'from-blue-900 to-green-700'} text-white`}>
+      <section className={`py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br ${campus === 'playschool' ? 'bg-gradient-to-r from-blue-900 to-green-700' : 'from-blue-900 to-green-700'} text-white`}>
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-white/90">
@@ -179,7 +179,7 @@ export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void
                   type="submit"
                   className={`w-full py-4 rounded-lg font-bold text-white transition-all duration-300 flex items-center justify-center space-x-2 ${
                     campus === 'playschool'
-                      ? 'bg-gradient-to-r from-lime-400 to-yellow-400 hover:shadow-lg'
+                      ? 'bg-gradient-to-r bg-gradient-to-r from-blue-900 to-green-700 hover:shadow-lg'
                       : 'bg-gradient-to-r from-blue-900 to-green-700 hover:shadow-lg'
                   }`}
                 >
