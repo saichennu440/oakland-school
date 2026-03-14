@@ -85,7 +85,7 @@ function AppContent() {
         return <AcademicsPage />;
       case 'gallery':
         return <GalleryPage />;
-      case 'schoollife':
+      case 'oaklandstudio':
         return <SchoolLifePage />;  
       case 'events':
         return <EventsPage />;

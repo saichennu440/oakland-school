@@ -1,35 +1,95 @@
 import { ArrowRight } from 'lucide-react';
 import { Heart, Shield, Users, BookOpen, Sparkles, Calendar,  Star, Clock } from 'lucide-react';
+import {  X } from 'lucide-react';
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from 'react';
+
 
 
 interface PlayschoolHomeProps {
   onNavigate: (page: string) => void;
 }
 
+interface Program {
+  title: string;
+  age: string;
+  img: string;
+  description: string;
+  modalContent?: {
+    intro: string;
+    skillsLabel?: string;
+    skills: (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined)[];
+    closing?: string;
+  };
+}
+
 export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
+const [activeProgram, setActiveProgram] = useState<Program | null>(null);
+
+
   const programs = [
-    {
-      title: 'Nursery',
-      age: '2-3 years',
-      description: 'Introduction to school through play, sensory exploration, and social interaction.',
-      color: 'from-pink-400 to-rose-400',
-      img: '/playschool/Home7.jpg', // replace with your image
+  {
+    title: "Early Explorers",
+    age: "Nursery – UKG",
+    img: "/playschool/Home7.jpg", // replace with your file
+    description: "A joyful blend of Montessori, Playway, and Activity-Based learning...",
+    modalContent: {
+      intro: "The Early Explorers Program nurtures curiosity and builds the essential developmental foundations during a child's most formative years. Through a joyful blend of Montessori, Playway, and Activity-Based learning, children begin their journey of discovery in a safe, engaging, and stimulating environment.",
+      skillsLabel: "Children will develop:",
+      skills: [
+        "Early Literacy Skills – phonemic awareness, letter recognition, storytelling, vocabulary development, and early reading readiness.",
+        "Foundational Numeracy – number sense, counting, shapes, patterns, and basic mathematical thinking.",
+        "Communication & Language – confident speaking, listening skills, expression through stories, songs, and role play.",
+        "Motor Development – fine motor skills through art, tracing, puzzles and gross motor development through physical play.",
+        "Social & Emotional Skills – cooperation, empathy, sharing, and building friendships.",
+        "Creativity & Imagination – music, art, dramatic play, and hands-on exploration.",
+        "Curiosity & Discovery – nature exploration, observation, and inquiry-based activities that encourage children to ask questions about the world.",
+      ],
+      closing: "The goal of Early Explorers is to help every child grow into a happy, confident learner ready to step into formal schooling.",
     },
-    {
-      title: 'LKG',
-      age: '3-4 years',
-      description: 'Building foundational skills through structured play and creative activities.',
-      color: 'from-purple-400 to-pink-400',
-      img: '/playschool/Home8.jpg', // replace with your image
+  },
+  {
+    title: "Foundations",
+    age: "Primary School – Grades 1 to 5",
+    img: "/playschool/Home8.jpg",
+    description: "Strengthening academic fundamentals while cultivating curiosity and independent thinking...",
+    modalContent: {
+      intro: "The Foundations Program strengthens academic fundamentals while cultivating curiosity, creativity, and independent thinking. Students begin to develop structured learning habits and deeper understanding across subjects.",
+      skillsLabel: "Students will develop:",
+      skills: [
+        "Strong Literacy & Language Skills – reading comprehension, structured writing, grammar, vocabulary expansion, and public speaking.",
+        "Mathematical Thinking – conceptual understanding of numbers, problem solving, logical reasoning, and practical application of mathematics.",
+        "Scientific Curiosity – observation, experimentation, and understanding basic scientific principles through hands-on learning.",
+        "Communication & Presentation Skills – expressing ideas clearly through speaking, storytelling, discussions, and presentations.",
+        "Creative Expression – art, music, theatre, and creative projects that encourage imagination and innovation.",
+        "Digital & Media Literacy – basic technology skills and responsible digital engagement.",
+        "Character & Life Skills – responsibility, teamwork, discipline, and respect for others.",
+        "Exploratory Learning – projects, field visits, and experiential learning that connect classroom concepts to real life.",
+      ],
+      closing: "By the end of this stage, students build strong academic foundations and the confidence to think independently.",
     },
-    {
-      title: 'UKG',
-      age: '4-5 years',
-      description: 'Preparing for primary school with pre-literacy, numeracy, and social skills.',
-      color: 'from-blue-400 to-purple-400',
-      img: '/playschool/Home9.jpg', // replace with your image
+  },
+  {
+    title: "Horizons",
+    age: "Middle School – Grades 6 to 8",
+    img: "/playschool/Home9.jpg",
+    description: "Preparing students for advanced academic pathways with critical thinking and leadership...",
+    modalContent: {
+      intro: "The Horizons Program prepares students for advanced academic pathways by developing critical thinking, analytical ability, and leadership skills. Students begin to engage with subjects in greater depth while exploring their interests and future aspirations.",
+      skillsLabel: "Students will develop:",
+      skills: [
+        "Advanced Academic Skills – deeper understanding in mathematics, sciences, languages, and social sciences.",
+        "Critical Thinking & Analysis – evaluating ideas, forming arguments, and solving complex problems.",
+        "Research & Inquiry Skills – independent projects, investigation, and structured research practices.",
+        "Communication & Leadership – debates, presentations, collaborative learning, and leadership opportunities.",
+        "Competitive & Enrichment Exposure – preparation for Olympiads, academic competitions, and advanced learning programs.",
+        "Technology & Innovation – digital tools, media literacy, and exposure to emerging technologies.",
+        "Global Awareness – understanding cultures, world issues, and responsible citizenship.",
+        "Personal Growth & Responsibility – developing discipline, confidence, and self-management skills.",
+      ],
+      closing: "The Horizons Program empowers students to expand their perspectives, pursue excellence, and prepare for the academic and leadership challenges ahead.",
     },
-  ];
+  },
+];
 
   const features = [
     {
@@ -79,11 +139,10 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
     { time: '11:30 AM', activity: 'Outdoor Play' },
     { time: '12:00 PM', activity: 'Story Time & Dismissal' },
   ];
-
   return (
     <div className="bg-gradient-to-b from-yellow-50 via-white to-lime-50">
       {/* HERO */}                                              
-       <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-900 to-green-700 text-white overflow-hidden">
+  <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-900 to-green-700 text-white overflow-hidden">
   {/* decorative pattern: behind content */}
   <div
     className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzBoLTZ2LTZoNnYtNmg2djZoNnY2aC02djZoLTZ2LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20 pointer-events-none"
@@ -142,7 +201,7 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
   <div className="max-w-7xl mx-auto">
 
     <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Why Oakland Playschool?</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Why Oakland ?</h2>
       <p className="text-lg text-gray-600 max-w-2xl mx-auto">A caring community where your child thrives, learns, and grows.</p>
     </div>
 
@@ -178,47 +237,114 @@ export function PlayschoolHome({ onNavigate }: PlayschoolHomeProps) {
 
       {/* PROGRAMS */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-  <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Programs</h2>
-      <p className="text-lg text-gray-600">Age-appropriate learning experiences for every stage</p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {programs.map((program, i) => (
-        <div
-          key={i}
-          className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 border bg-white"
-        >
-          {/* Image section — increased height + full coverage */}
-          <div className="h-56 sm:h-64 md:h-72 lg:h-80 w-full overflow-hidden">
-            <img
-              src={program.img}
-              alt={program.title}
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Programs</h2>
+            <p className="text-lg text-gray-600">Age-appropriate learning experiences for every stage</p>
           </div>
 
-          {/* Text section */}
-          <div className="p-6 bg-white">
-            <h3 className="text-2xl font-bold text-gray-900 mb-1">{program.title}</h3>
-            <p className="text-sm text-gray-500 mb-3">{program.age}</p>
-            <p className="text-gray-600 mb-4 text-sm">{program.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {programs.map((program, i) => (
+              <div
+                key={i}
+                className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 border bg-white"
+              >
+                <div className="h-56 sm:h-64 md:h-72 lg:h-80 w-full overflow-hidden">
+                  <img
+                    src={program.img}
+                    alt={program.title}
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
 
-            <button
-              onClick={() => onNavigate('admissions')}
-              className="inline-flex items-center gap-2 text-lime-600 font-semibold hover:underline"
-            >
-              Learn More
-              <ArrowRight className="w-4 h-4" />
-            </button>
+                <div className="p-6 bg-white">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-1">{program.title}</h3>
+                  <p className="text-sm text-gray-500 mb-3">{program.age}</p>
+                  <p className="text-gray-600 mb-4 text-sm">{program.description}</p>
+
+                  <button
+                    onClick={() => setActiveProgram(program)}
+                    className="inline-flex items-center gap-2 text-lime-600 font-semibold hover:underline"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+
+        {/* Program Detail Modal */}
+        {activeProgram && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={() => setActiveProgram(null)}
+          >
+            <div
+              className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header Image */}
+              <div className="h-48 w-full overflow-hidden rounded-t-3xl relative">
+                <img
+                  src={activeProgram.img}
+                  alt={activeProgram.title}
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-6">
+                  <h3 className="text-2xl font-bold text-white">{activeProgram.title}</h3>
+                  <p className="text-sm text-white/80">{activeProgram.age}</p>
+                </div>
+                <button
+                  onClick={() => setActiveProgram(null)}
+                  className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full p-1.5 transition"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 space-y-4">
+                <p className="text-gray-700 text-sm leading-relaxed">{activeProgram.modalContent?.intro}</p>
+
+                {activeProgram.modalContent?.skills && (
+                  <div>
+                    <h4 className="text-base font-semibold text-gray-900 mb-2">
+                      {activeProgram.modalContent.skillsLabel ?? "Students will develop:"}
+                    </h4>
+                    <ul className="space-y-2">
+                      {activeProgram.modalContent.skills.map((skill: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, idx: Key | null | undefined) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
+                          <span className="mt-1 w-2 h-2 rounded-full bg-lime-500 flex-shrink-0" />
+                          <span>{skill}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {activeProgram.modalContent?.closing && (
+                  <p className="text-gray-700 text-sm leading-relaxed italic border-l-4 border-lime-400 pl-4">
+                    {activeProgram.modalContent.closing}
+                  </p>
+                )}
+
+                <button
+                  onClick={() => { setActiveProgram(null); onNavigate('admissions'); }}
+                  className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-lime-500 hover:bg-lime-600 text-white font-semibold py-3 px-6 rounded-2xl transition"
+                >
+                  Apply for Admissions
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
 
       {/* DAILY ROUTINE */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-lime-50 to-yellow-50">

@@ -18,7 +18,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
     { label: 'About', page: 'about' },
     { label: 'Admissions', page: 'admissions' },
     { label: 'Academics', page: 'academics' },
-    { label: 'School Life', page: 'schoollife' },
+    { label: 'Oakland Studio', page: 'oaklandstudio' },
     { label: 'Gallery', page: 'gallery' },
     { label: 'Events', page: 'events' },
     { label: 'Contact', page: 'contact' },

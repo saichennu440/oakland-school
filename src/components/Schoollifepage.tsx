@@ -96,7 +96,7 @@ export function SchoolLifePage() {
             <div>
               <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm mb-6">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                ON AIR — The Oakland Studio
+                ON AIR — <span className="font-bold text-3xl bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-pink-500  ">The Oakland Studio</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Communication, Media & Expression</h2>
               <p className="text-gray-300 leading-relaxed mb-6">

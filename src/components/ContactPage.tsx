@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { useCampus } from '../contexts/CampusContext';
 import { useState } from 'react';
 
@@ -11,12 +11,11 @@ export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void
     subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert('Thank you for contacting us! We will get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-  };
+   const gradientClass = campus === 'playschool' ? 'from-blue-900 to-green-700' : 'from-blue-900 to-green-700';
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,7 +53,32 @@ export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void
       mapUrl: 'https://maps.app.goo.gl/m4qVQ3r3TyKTypDp9?g_st=ipc',
     },
   ];
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault(); // prevents redirect
+  setIsSubmitting(true);
+  setSubmitStatus('idle');
 
+  try {
+    const response = await fetch('https://formspree.io/f/mvzwqvjk', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) throw new Error('Formspree error');
+
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   return (
     <div className="bg-white">
       <section className={`py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br ${campus === 'playschool' ? 'bg-gradient-to-r from-blue-900 to-green-700' : 'from-blue-900 to-green-700'} text-white`}>
@@ -89,104 +113,144 @@ export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-              <form action="https://formspree.io/f/xanogwrj"
-                   method="POST"
-                    className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
+  {/* Status Messages */}
+  {submitStatus === 'success' && (
+    <div className="p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
+      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+      <div>
+        <p className="font-semibold text-green-900">Message sent successfully!</p>
+        <p className="text-sm text-green-700">We'll get back to you within 24 hours.</p>
+      </div>
+    </div>
+  )}
+  {submitStatus === 'error' && (
+    <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
+      <div className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0">✕</div>
+      <div>
+        <p className="font-semibold text-red-900">Failed to send message.</p>
+        <p className="text-sm text-red-700">Please try again or contact us directly by phone.</p>
+      </div>
+    </div>
+  )}
 
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                </div>
+  {/* Full Name */}
+  <div>
+    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+      Full Name *
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      value={formData.name}
+      onChange={handleChange}
+      placeholder="Enter your full name"
+      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+    />
+  </div>
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject *
-                  </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="admissions">Admissions Inquiry</option>
-                    <option value="general">General Information</option>
-                    <option value="academics">Academic Programs</option>
-                    <option value="facilities">Campus Facilities</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
+  {/* Email + Phone */}
+  <div className="grid md:grid-cols-2 gap-6">
+    <div>
+      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+        Email Address *
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="you@example.com"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+      />
+    </div>
+    <div>
+      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+        Phone Number
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+        placeholder="+91 00000 00000"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+      />
+    </div>
+  </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Tell us how we can help you..."
-                  />
-                </div>
+  {/* Subject */}
+  <div>
+    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+      Subject *
+    </label>
+    <select
+      id="subject"
+      name="subject"
+      required
+      value={formData.subject}
+      onChange={handleChange}
+      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white"
+    >
+      <option value="">Select a subject</option>
+      <option value="admissions">Admissions Inquiry</option>
+      <option value="general">General Information</option>
+      <option value="academics">Academic Programs</option>
+      <option value="facilities">Campus Facilities</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
 
-                <button
-                  type="submit"
-                  className={`w-full py-4 rounded-lg font-bold text-white transition-all duration-300 flex items-center justify-center space-x-2 ${
-                    campus === 'playschool'
-                      ? 'bg-gradient-to-r bg-gradient-to-r from-blue-900 to-green-700 hover:shadow-lg'
-                      : 'bg-gradient-to-r from-blue-900 to-green-700 hover:shadow-lg'
-                  }`}
-                >
-                  <Send className="w-5 h-5" />
-                  <span>Send Message</span>
-                </button>
-              </form>
+  {/* Message */}
+  <div>
+    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+      Message *
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows={6}
+      required
+      value={formData.message}
+      onChange={handleChange}
+      placeholder="Tell us how we can help you..."
+      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
+    />
+  </div>
+
+  {/* Submit Button */}
+  <button
+    type="submit"
+    disabled={isSubmitting}
+    className={`w-full py-4 rounded-lg font-bold text-white transition-all duration-300 flex items-center justify-center gap-2 ${
+      isSubmitting
+        ? 'bg-gray-400 cursor-not-allowed'
+        : 'bg-gradient-to-r from-blue-900 to-green-700 hover:shadow-lg hover:-translate-y-0.5'
+    }`}
+  >
+    {isSubmitting ? (
+      <>
+        <svg className="animate-spin w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+        </svg>
+        <span>Sending...</span>
+      </>
+    ) : (
+      <>
+        <Send className="w-5 h-5" />
+        <span>Send Message</span>
+      </>
+    )}
+  </button>
+
+</form>
             </div>
 
             <div className="space-y-8">
