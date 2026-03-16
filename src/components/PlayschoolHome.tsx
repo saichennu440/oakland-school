@@ -1,9 +1,10 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, GraduationCap } from 'lucide-react';
 import { Heart, Shield, Users, BookOpen, Sparkles, Calendar,  Star, Clock } from 'lucide-react';
 import {  X } from 'lucide-react';
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from 'react';
 
-
+import { useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface PlayschoolHomeProps {
   onNavigate: (page: string) => void;
@@ -131,34 +132,202 @@ const [activeProgram, setActiveProgram] = useState<Program | null>(null);
     },
   ];
 
-  const dailyRoutine = [
-    { time: '8:30 AM', activity: 'Welcome & Free Play' },
-    { time: '9:00 AM', activity: 'Circle Time & Rhymes' },
-    { time: '10:00 AM', activity: 'Snack Time' },
-    { time: '10:30 AM', activity: 'Learning Activities' },
-    { time: '11:30 AM', activity: 'Outdoor Play' },
-    { time: '12:00 PM', activity: 'Story Time & Dismissal' },
+  const [activeStage, setActiveStage] = useState<number>(0);
+
+const stages = [
+    {
+      label: 'Nursery',
+      age: 'Age 3+',
+      color: 'from-blue-800 to-blue-800',
+      lightBg: 'bg-blue-50',
+      accent: 'text-blue-600',
+      border: 'border-blue-800',
+      dot: 'bg-blue-800',
+      icon: '🌱',
+      termGoals: [
+        {
+          term: 'Term 1',
+          title: 'Hello World',
+          milestones: [
+            'Settles into classroom routine independently',
+            'Recognises own name in print',
+            'Counts objects up to 5',
+            'Uses 2–3 word sentences confidently',
+            'Holds a crayon with a tripod grip',
+          ],
+        },
+        {
+          term: 'Term 2',
+          title: 'Growing Curious',
+          milestones: [
+            'Identifies letters A–M by sight',
+            'Understands concepts of big/small, more/less',
+            'Participates in group circle time',
+            'Completes simple 4-piece puzzles',
+            'Names and sorts basic shapes and colours',
+          ],
+        },
+        {
+          term: 'Term 3',
+          title: 'Ready to Shine',
+          milestones: [
+            'Recites rhymes and short poems from memory',
+            'Counts and writes numbers 1–10',
+            'Expresses feelings using words',
+            'Shows early phonemic awareness (rhyming)',
+            'Draws recognisable people and objects',
+          ],
+        },
+      ],
+    },
+    {
+      label: 'LKG',
+      age: 'Age 4+',
+      color: 'from-amber-500 to-yellow-400',
+      lightBg: 'bg-amber-50',
+      accent: 'text-amber-600',
+      border: 'border-amber-200',
+      dot: 'bg-amber-400',
+      icon: '🌿',
+      termGoals: [
+        {
+          term: 'Term 1',
+          title: 'Building Foundations',
+          milestones: [
+            'Recognises and writes all 26 letters (upper & lower)',
+            'Reads simple 3-letter CVC words',
+            'Counts forwards and backwards to 20',
+            'Follows 2-step instructions independently',
+            'Participates in show-and-tell with confidence',
+          ],
+        },
+        {
+          term: 'Term 2',
+          title: 'Connecting Ideas',
+          milestones: [
+            'Blends consonants to form simple words',
+            'Understands addition as "putting together"',
+            'Identifies living vs non-living things',
+            'Creates patterns using colours and shapes',
+            'Writes first name legibly on unruled paper',
+          ],
+        },
+        {
+          term: 'Term 3',
+          title: 'Growing Independent',
+          milestones: [
+            'Reads aloud simple sentences with support',
+            'Solves basic addition problems up to 10',
+            'Describes daily routine using sequence words',
+            'Demonstrates sharing and turn-taking consistently',
+            'Creates a simple story with beginning and end',
+          ],
+        },
+      ],
+    },
+    {
+      label: 'UKG',
+      age: 'Age 5+',
+      color: 'from-emerald-600 to-green-500',
+      lightBg: 'bg-emerald-50',
+      accent: 'text-emerald-700',
+      border: 'border-emerald-200',
+      dot: 'bg-emerald-500',
+      icon: '🌳',
+      termGoals: [
+        {
+          term: 'Term 1',
+          title: 'Confident Learners',
+          milestones: [
+            'Reads simple books independently (Level 1)',
+            'Writes 2–3 sentences on a given topic',
+            'Adds and subtracts numbers within 20',
+            'Identifies days, months, and seasons',
+            'Uses scissors and art tools with precision',
+          ],
+        },
+        {
+          term: 'Term 2',
+          title: 'Thinking Deeper',
+          milestones: [
+            'Reads with expression and basic punctuation awareness',
+            'Solves word problems using drawings or objects',
+            'Understands concepts of time (yesterday/today/tomorrow)',
+            'Makes predictions during storytelling',
+            'Takes leadership roles in group activities',
+          ],
+        },
+        {
+          term: 'Term 3',
+          title: 'School Ready',
+          milestones: [
+            'Reads and comprehends Level 2 readers',
+            'Writes a short paragraph with punctuation',
+            'Counts, compares, and orders numbers up to 100',
+            'Plans and completes a mini project independently',
+            'Transitions confidently — ready for Grade 1',
+          ],
+        },
+      ],
+    },
   ];
+
+  const active = stages[activeStage];  
+
+
+
+  const [activeSlide, setActiveSlide] = useState(0);
+
+useEffect(() => {
+  const timer = setInterval(() => setActiveSlide(s => (s + 1) % 3), 4000);
+  return () => clearInterval(timer);
+}, []);
   return (
     <div className="bg-gradient-to-b from-yellow-50 via-white to-lime-50">
-      {/* HERO */}                                              
-  <section className="relative py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-900 to-green-700 text-white overflow-hidden">
-  {/* decorative pattern: behind content */}
-  <div
-    className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzBoLTZ2LTZoNnYtNmg2djZoNnY2aC02djZoLTZ2LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20 pointer-events-none"
-    aria-hidden="true"
-  />
+{/* HERO - Carousel */}
+<section className="relative h-[600px] md:h-[680px] lg:h-[720px] overflow-hidden text-white">
+  {/* Slides */}
+  {[
+    '/hero/playschl1.jpg',
+    '/hero/playschl2.jpg',
+    '/hero/playschl3.jpg',
+  ].map((src, i) => (
+    <div
+      key={i}
+      className={`absolute inset-0 transition-opacity duration-1000 ${activeSlide === i ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+    >
+      <img src={src} alt={`Slide ${i + 1}`} className="w-full h-full object-cover object-center" />
+      {/* dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20" />
+    </div>
+  ))}
+<nav className="relative z-20 max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              
+            </div>
 
-  <div className="max-w-7xl mx-auto">
-    <div className="grid lg:grid-cols-2 gap-12 lg:gap-28 items-center">
-      {/* LEFT: text/content */}
-      <div className="z-10">
+            <div className="hidden md:flex items-center space-x-4">
+              <button
+                onClick={() => onNavigate('admissions')}
+                className="px-4 py-2 bg-amber-100 text-amber-900 rounded-md font-semibold shadow hover:shadow-md transition"
+              >
+                Admissions Open 2026–27
+              </button>
+              <button onClick={() => onNavigate('contact')} className="text-white/90 bg-black px-3 py-2 rounded-md hover:bg-white/50">
+                Contact
+              </button>
+            </div>
+          </nav>
+  {/* Content — sits above slides */}
+  <div className="relative z-20 h-full flex items-center px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-2xl">
         <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
           <Sparkles className="w-4 h-4" />
           <span className="text-sm font-medium">Oakland Playschool</span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
           Where Every Day is a New Adventure
         </h1>
 
@@ -182,17 +351,36 @@ const [activeProgram, setActiveProgram] = useState<Program | null>(null);
           </button>
         </div>
       </div>
-
-      {/* RIGHT: image */}
-      <div className="z-10 flex justify-center lg:justify-end">
-        <img
-          src="/playschool/home1.jpg"
-          alt="Children playing at Oakland Playschool"
-          className="w-full max-w-md md:max-w-xl lg:max-w-2xl rounded-2xl shadow-lg object-cover h-64 md:h-80 lg:h-96"
-        />
-      </div>
     </div>
   </div>
+
+  {/* Dot indicators */}
+  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+    {[0, 1, 2].map(i => (
+      <button
+        key={i}
+        onClick={() => setActiveSlide(i)}
+        className={`rounded-full transition-all duration-300 ${activeSlide === i ? 'w-8 h-2.5 bg-white' : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'}`}
+        aria-label={`Go to slide ${i + 1}`}
+      />
+    ))}
+  </div>
+
+  {/* Prev / Next arrows */}
+  <button
+    onClick={() => setActiveSlide(s => (s + 2) % 3)}
+    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center transition"
+    aria-label="Previous slide"
+  >
+    <ChevronLeft className="w-5 h-5 text-white" />
+  </button>
+  <button
+    onClick={() => setActiveSlide(s => (s + 1) % 3)}
+    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center transition"
+    aria-label="Next slide"
+  >
+    <ChevronRight className="w-5 h-5 text-white" />
+  </button>
 </section>
 
 
@@ -346,36 +534,76 @@ const [activeProgram, setActiveProgram] = useState<Program | null>(null);
         )}
       </section>
 
-      {/* DAILY ROUTINE */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-lime-50 to-yellow-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center space-x-3 bg-lime-200 px-4 py-2 rounded-full mb-4">
-               <Clock className="w-4 h-4 text-lime-700" />
-              <span className="text-sm font-medium text-lime-700">A Day at Playschool</span>
-            </div>
+      {/* Mailstone Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <div className="max-w-6xl mx-auto">
 
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Daily Routine</h2>
-            <p className="text-lg text-gray-600">Structured yet flexible schedule designed for young learners</p>
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-lime-100 text-lime-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
+            <GraduationCap className="w-4 h-4" />
+            Learning Milestones
           </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">What Your Child Will Achieve</h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            Clear, meaningful goals for every term — so you always know how your child is growing.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {dailyRoutine.map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-blue-900 to-green-700">
-                    <span className="text-white text-xs font-bold">{item.time.split(' ')[0]}</span>
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-500 mb-1">{item.time}</div>
-                    <div className="font-semibold text-gray-900">{item.activity}</div>
-                  </div>
+        {/* Stage tabs */}
+        <div className="flex justify-center gap-3 mb-10">
+          {stages.map((s, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveStage(i)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 border-2 ${
+                activeStage === i
+                  ? `bg-gradient-to-r ${s.color} text-white border-transparent shadow-lg scale-105`
+                  : `bg-white text-gray-600 border-gray-200 hover:border-gray-300`
+              }`}
+            >
+              <span>{s.icon}</span>
+              <span>{s.label}</span>
+              <span className={`text-xs font-normal ${activeStage === i ? 'text-white/80' : 'text-gray-400'}`}>{s.age}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Term cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {active.termGoals.map((term, ti) => (
+            <div
+              key={ti}
+              className={`rounded-2xl border ${active.border} ${active.lightBg} p-6 hover:shadow-md transition-shadow duration-300`}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${active.color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                  {ti + 1}
+                </div>
+                <div>
+                  <p className={`text-xs font-bold uppercase tracking-widest ${active.accent}`}>{term.term}</p>
+                  <p className="text-base font-bold text-gray-900">{term.title}</p>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <ul className="space-y-2.5">
+                {term.milestones.map((m, mi) => (
+                  <li key={mi} className="flex items-start gap-2.5 text-sm text-gray-700">
+                    <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${active.dot}`} />
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-      </section>
+
+        {/* Bottom note */}
+        <p className="text-center text-xs text-gray-400 mt-8">
+          Milestones are reviewed each term through observation, activities, and teacher assessments. Every child progresses at their own pace.
+        </p>
+      </div>
+    </section>
 
       {/* TESTIMONIALS */}
        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">

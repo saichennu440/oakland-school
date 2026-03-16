@@ -29,7 +29,7 @@ export function FloatingActions({ onApply }: FloatingActionsProps) {
 
       <button
         onClick={onApply}
-        className="fixed bottom-6 left-6 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 z-40"
+        className="fixed bottom-6 left-6 px-6 py-3 bg-gradient-to-r from-pink-500 to-orange-500 text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 z-40"
       >
         <span>Apply Now</span>
         <span className="animate-pulse">→</span>

@@ -169,23 +169,23 @@ export default function RegularSchoolHome({ onNavigate }: { onNavigate: (page: s
               >
                 Admissions Open 2026–27
               </button>
-              <button onClick={() => onNavigate('contact')} className="text-white/90 px-3 py-2 rounded-md hover:bg-white/10">
+              <button onClick={() => onNavigate('contact')} className="text-white/90 bg-black px-3 py-2 rounded-md hover:bg-white/10">
                 Contact
               </button>
             </div>
           </nav>
 
           <div className="relative z-20 max-w-7xl mx-auto px-6 py-12 md:py-20 lg:py-28">
-            <div className="max-w-3xl bg-white/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-lg">
+            <div className="max-w-3xl bg-transparent rounded-2xl p-8 md:p-12 shadow-lg">
               <div className="inline-flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-amber-900" />
                 </div>
-                <span className="text-sm font-medium text-amber-900">Oakland School • Vizianagaram</span>
+                <span className="text-sm font-medium text-white">Oakland School • Vizianagaram</span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">Strong Foundations, Endless Horizons.</h1>
-              <p className="text-gray-700/90 mb-6">A warm, modern school rooted in values — nurturing curious minds from Early Explorers through High School.</p>
+              <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">Strong Foundations, Endless Horizons.</h1>
+              <p className="text-white font-semibold mb-6">A warm, modern school rooted in values — nurturing curious minds from Early Explorers through High School.</p>
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
@@ -197,7 +197,7 @@ export default function RegularSchoolHome({ onNavigate }: { onNavigate: (page: s
 
                 <button
                   onClick={() => onNavigate('about')}
-                  className="px-6 py-3 border-2 border-amber-100 rounded-lg bg-white/60 font-semibold hover:bg-white transition"
+                  className="px-6 py-3 border-3 border-amber-100 rounded-lg bg-white/60 font-semibold hover:bg-white transition"
                 >
                   Explore Campus
                 </button>
@@ -236,7 +236,7 @@ export default function RegularSchoolHome({ onNavigate }: { onNavigate: (page: s
         </div>
 
         {/* Achievements strip */}
-        <div className="relative z-20 -mt-10 max-w-7xl mx-auto px-6">
+        <div className="relative z-20 -mt-15 max-w-7xl mx-auto px-6">
           <div className="bg-white rounded-xl shadow-md p-4 flex flex-wrap gap-6 justify-between items-center">
             {achievements.map((a, idx) => (
               <div key={idx} className="flex-1 min-w-[120px] text-center">

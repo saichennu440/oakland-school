@@ -88,9 +88,17 @@ export function Footer({currentPage = 'footer', onNavigate }: FooterProps) {
                 <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span>+91 9121009935</span>
               </a>
-              <a href="mailto:oaklandearlyexp@gmail.com" className="flex items-start space-x-3 text-gray-400 hover:text-white transition-colors">
+              <a href="mailto:admissions@oaklandedu.in" className="flex items-start space-x-3 text-gray-400 hover:text-white transition-colors">
                 <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>oaklandearlyexp@gmail.com</span>
+                <span>admissions@oaklandedu.in</span>
+              </a>
+               <a href="mailto:info@oaklandedu.in" className="flex items-start space-x-3 text-gray-400 hover:text-white transition-colors">
+                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <span>info@oaklandedu.in</span>
+              </a>
+               <a href="mailto:principal@oaklandedu.in" className="flex items-start space-x-3 text-gray-400 hover:text-white transition-colors">
+                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <span>principal@oaklandedu.in</span>
               </a>
               <div className="flex items-start space-x-3 text-gray-400">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />

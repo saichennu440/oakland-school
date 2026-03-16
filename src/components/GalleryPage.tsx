@@ -1,207 +1,197 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCampus } from '../contexts/CampusContext';
 
 export function GalleryPage() {
   const { campus } = useCampus();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const categories = ['all', 'academics', 'sports', 'events', 'facilities', 'activities'];
 
   const galleryImages = [
-    {
-      id: 1,
-      url: '/playschool/Home9.jpg',
-      title: 'Classroom Learning',
-      category: 'academics',
-      campus: 'both',
-    },
-    {
-      id: 2,
-      url: '/playschool/home2.jpg',
-      title: 'Creative Activities',
-      category: 'activities',
-      campus: 'playschool',
-    },
-    {
-      id: 3,
-      url: '/playschool/home6.jpg',
-      title: 'Science Lab',
-      category: 'facilities',
-      campus: 'regular',
-    },
-    {
-      id: 4,
-      url: 'https://images.pexels.com/photos/8613342/pexels-photo-8613342.jpeg?auto=compress&cs=tinysrgb&w=800',
-      title: 'Sports Day',
-      category: 'sports',
-      campus: 'both',
-    },
-    {
-      id: 5,
-      url: '/playschool/Home7.jpg',
-      title: 'Annual Function',
-      category: 'events',
-      campus: 'both',
-    },
-    {
-      id: 6,
-      url: 'https://images.pexels.com/photos/8613098/pexels-photo-8613098.jpeg?auto=compress&cs=tinysrgb&w=800',
-      title: 'Library',
-      category: 'facilities',
-      campus: 'regular',
-    },
-    {
-      id: 7,
-      url: 'https://images.pexels.com/photos/8612990/pexels-photo-8612990.jpeg?auto=compress&cs=tinysrgb&w=800',
-      title: 'Outdoor Play',
-      category: 'activities',
-      campus: 'playschool',
-    },
-    {
-      id: 8,
-      url: 'https://images.pexels.com/photos/8613317/pexels-photo-8613317.jpeg?auto=compress&cs=tinysrgb&w=800',
-      title: 'Art Class',
-      category: 'activities',
-      campus: 'both',
-    },
-    {
-      id: 9,
-      url: 'https://images.pexels.com/photos/8613346/pexels-photo-8613346.jpeg?auto=compress&cs=tinysrgb&w=800',
-      title: 'Computer Lab',
-      category: 'facilities',
-      campus: 'regular',
-    },
+    // Co-curricular
+    { id: 1,  url: '/gallery/cocurr-arts.jpg',         title: 'Arts & Crafts' },
+    { id: 2,  url: '/gallery/cocurr-community.jpg',    title: 'Community Activities' },
+    { id: 3,  url: '/gallery/cocurr-cultural.jpg',     title: 'Cultural Programs' },
+    { id: 4,  url: '/gallery/cocurr-lifeskills.jpg',   title: 'Life Skills' },
+    { id: 5,  url: '/gallery/cocurr-music.jpg',        title: 'Music' },
+    { id: 6,  url: '/gallery/cocurr-national.jpg',     title: 'National Programs' },
+    // Events
+    { id: 7,  url: '/gallery/event-christmas.jpg',           title: 'Christmas Celebration' },
+    { id: 8,  url: '/gallery/event-colorday.jpg',            title: 'Colour Day' },
+    { id: 9,  url: '/gallery/event-diwali.jpg',              title: 'Diwali Celebration' },
+    { id: 10, url: '/gallery/event-firstday.jpg',            title: 'First Day of School' },
+    { id: 11, url: '/gallery/event-graduation.jpg',          title: 'Graduation Ceremony' },
+    { id: 12, url: '/gallery/event-independence.jpg',        title: 'Independence Day' },
+    { id: 13, url: '/gallery/event-parent-orientation.jpg',  title: 'Parent Orientation' },
+    { id: 14, url: '/gallery/event-pongal.jpg',              title: 'Pongal Celebration' },
+    { id: 15, url: '/gallery/event-ptm.jpg',                 title: 'Parent-Teacher Meeting' },
+    { id: 16, url: '/gallery/event-republic.jpg',            title: 'Republic Day' },
+    { id: 17, url: '/gallery/event-sports.jpg',              title: 'Sports Day' },
+    { id: 18, url: '/gallery/event-wonderfair.jpg',          title: 'Wonder Fair' },
+    // Field Trips
+    { id: 19, url: '/gallery/fieldtrip-dental.jpg',   title: 'Dental Awareness Visit' },
+    { id: 20, url: '/gallery/fieldtrip-farm.jpg',     title: 'Farm Visit' },
+    { id: 21, url: '/gallery/fieldtrip-fire.jpg',     title: 'Fire Station Visit' },
+    { id: 22, url: '/gallery/fieldtrip-police.jpg',   title: 'Police Station Visit' },
+    { id: 23, url: '/gallery/fieldtrip-science.jpg',  title: 'Science Museum Trip' },
+    { id: 24, url: '/gallery/fieldtrip-zoo.jpg',      title: 'Zoo Trip' },
+    // Sports
+    { id: 25, url: '/gallery/sports-football.jpg',  title: 'Football' },
+    { id: 26, url: '/gallery/sports-ground.jpg',    title: 'Sports Ground' },
+    { id: 27, url: '/gallery/sports-pe.jpg',        title: 'Physical Education' },
+    { id: 28, url: '/gallery/sports-play.jpg',      title: 'Playtime' },
+    { id: 29, url: '/gallery/sports-running.jpg',   title: 'Running & Athletics' },
+    // Studio
+    { id: 30, url: '/gallery/studio-debate.jpg',        title: 'Debate Club' },
+    { id: 31, url: '/gallery/studio-digital.jpg',       title: 'Digital Studio' },
+    { id: 32, url: '/gallery/studio-podcast.jpg',       title: 'Podcast Studio' },
+    { id: 33, url: '/gallery/studio-presentation.jpg',  title: 'Presentations' },
   ];
 
-  const filteredImages = galleryImages.filter((img) => {
-    const categoryMatch = activeCategory === 'all' || img.category === activeCategory;
-    const campusMatch = img.campus === 'both' || img.campus === campus;
-    return categoryMatch && campusMatch;
-  });
+  const openLightbox = (index: number) => setSelectedImage(index);
+  const closeLightbox = () => setSelectedImage(null);
+  const goToPrevious = useCallback(() => setSelectedImage(i => (i !== null && i > 0 ? i - 1 : i)), []);
+  const goToNext = useCallback(() => setSelectedImage(i => (i !== null && i < galleryImages.length - 1 ? i + 1 : i)), []);
 
-  const openLightbox = (index: number) => {
-    setSelectedImage(index);
-  };
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') goToPrevious();
+      if (e.key === 'ArrowRight') goToNext();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [goToPrevious, goToNext]);
 
-  const closeLightbox = () => {
-    setSelectedImage(null);
-  };
-
-  const goToPrevious = () => {
-    if (selectedImage !== null && selectedImage > 0) {
-      setSelectedImage(selectedImage - 1);
-    }
-  };
-
-  const goToNext = () => {
-    if (selectedImage !== null && selectedImage < filteredImages.length - 1) {
-      setSelectedImage(selectedImage + 1);
-    }
-  };
+  // Distribute into 3 masonry columns
+  const columns: typeof galleryImages[] = [[], [], []];
+  galleryImages.forEach((img, i) => columns[i % 3].push(img));
 
   return (
     <div className="bg-white">
-      <section className={`py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br ${campus === 'playschool' ? 'bg-gradient-to-r from-blue-900 to-green-700' : 'from-blue-900 to-green-700'} text-white`}>
+      {/* HERO */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900 to-green-700 text-white">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Gallery</h1>
-          <p className="text-xl text-white/90">
-            Explore moments that make Oakland Schools special
-          </p>
+          <p className="text-xl text-white/90">Explore moments that make Oakland Schools special</p>
         </div>
       </section>
 
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      {/* MASONRY GALLERY */}
+      <section className="py-14 px-4 sm:px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 capitalize ${
-                  activeCategory === category
-                    ? campus === 'playschool'
-                      ? 'bg-gradient-to-r bg-gradient-to-r from-blue-900 to-green-700 text-white shadow-lg'
-                      : 'bg-gradient-to-r from-blue-900 to-green-700 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category}
-              </button>
+
+          {/* Desktop masonry — 3 columns */}
+          <div className="hidden md:grid grid-cols-3 gap-4">
+            {columns.map((col, ci) => (
+              <div key={ci} className="flex flex-col gap-4">
+                {col.map((image) => {
+                  const globalIndex = galleryImages.findIndex(g => g.id === image.id);
+                  // Alternate aspect ratios per column for visual variety
+                  const aspectRatio = globalIndex % 2 === 0 ? '4/3' : '4/5';
+                  return (
+                    <div
+                      key={image.id}
+                      onClick={() => openLightbox(globalIndex)}
+                      className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                      style={{ aspectRatio }}
+                    >
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                        <span className="text-white font-semibold text-sm tracking-wide">{image.title}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredImages.map((image, index) => (
+          {/* Mobile — 2 column grid */}
+          <div className="md:hidden grid grid-cols-2 gap-3">
+            {galleryImages.map((image, index) => (
               <div
                 key={image.id}
                 onClick={() => openLightbox(index)}
-                className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300"
+                className="group relative aspect-square overflow-hidden rounded-xl cursor-pointer"
               >
                 <img
                   src={image.url}
                   alt={image.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-6 text-white">
-                    <h3 className="text-xl font-bold mb-1">{image.title}</h3>
-                    <p className="text-sm text-white/80 capitalize">{image.category}</p>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                  <span className="text-white font-semibold text-xs">{image.title}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          {filteredImages.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-500 text-lg">No images found for this category.</p>
-            </div>
-          )}
         </div>
       </section>
 
+      {/* LIGHTBOX */}
       {selectedImage !== null && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          {/* Close */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors z-10"
+            className="absolute top-5 right-5 w-11 h-11 bg-white/10 hover:bg-white/25 rounded-full flex items-center justify-center transition-colors z-20"
           >
-            <X className="w-6 h-6 text-white" />
+            <X className="w-5 h-5 text-white" />
           </button>
 
+          {/* Prev */}
           {selectedImage > 0 && (
             <button
-              onClick={goToPrevious}
-              className="absolute left-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+              onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 hover:bg-white/25 rounded-full flex items-center justify-center transition-colors z-20"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
           )}
 
-          {selectedImage < filteredImages.length - 1 && (
+          {/* Next */}
+          {selectedImage < galleryImages.length - 1 && (
             <button
-              onClick={goToNext}
-              className="absolute right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+              onClick={(e) => { e.stopPropagation(); goToNext(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 hover:bg-white/25 rounded-full flex items-center justify-center transition-colors z-20"
             >
               <ChevronRight className="w-6 h-6 text-white" />
             </button>
           )}
 
-          <div className="max-w-5xl w-full">
+          {/* Image */}
+          <div
+            className="max-w-5xl w-full flex flex-col items-center gap-5"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
-              src={filteredImages[selectedImage].url}
-              alt={filteredImages[selectedImage].title}
-              className="w-full h-auto rounded-lg"
+              src={galleryImages[selectedImage].url}
+              alt={galleryImages[selectedImage].title}
+              className="w-full max-h-[78vh] object-contain rounded-xl"
             />
-            <div className="text-center mt-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {filteredImages[selectedImage].title}
-              </h3>
-              <p className="text-gray-300 capitalize">
-                {filteredImages[selectedImage].category}
-              </p>
+            <div className="flex items-center gap-4">
+              <span className="text-white font-semibold text-lg">{galleryImages[selectedImage].title}</span>
+              <span className="text-white/40 text-sm">{selectedImage + 1} / {galleryImages.length}</span>
+            </div>
+            {/* Dot indicators */}
+            <div className="flex gap-1.5 flex-wrap justify-center max-w-sm">
+              {galleryImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelectedImage(i)}
+                  className={`rounded-full transition-all duration-300 ${i === selectedImage ? 'w-5 h-2 bg-white' : 'w-2 h-2 bg-white/30 hover:bg-white/60'}`}
+                />
+              ))}
             </div>
           </div>
         </div>

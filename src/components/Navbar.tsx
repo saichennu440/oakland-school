@@ -21,7 +21,7 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
     { label: 'Oakland Studio', page: 'oaklandstudio' },
     { label: 'Gallery', page: 'gallery' },
     { label: 'Events', page: 'events' },
-    { label: 'Contact', page: 'contact' },
+    // { label: 'Contact', page: 'contact' },
   ];
 
   const handleCampusSwitch = (newCampus: Campus) => {
@@ -91,8 +91,8 @@ export function Navbar({ currentPage = 'home', onNavigate }: NavbarProps) {
                   onClick={() => setCampusSwitcherOpen(!campusSwitcherOpen)}
                   className="hidden md:flex items-center space-x-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors"
                 >
-                  <span className="text-sm text-gray-600">Viewing:</span>
-                  <span className={`text-sm font-semibold ${campus === 'playschool' ? 'text-lime-600' : 'text-blue-900'}`}>
+                  {/* <span className="text-sm text-gray-600">Viewing:</span> */}
+                  <span className={`text-sm font-semibold  ${campus === 'playschool' ? 'text-lime-600' : 'text-blue-900'}`}>
                     {campusText[campus]}
                   </span>
                   <ChevronDown className="w-4 h-4 text-gray-400" />

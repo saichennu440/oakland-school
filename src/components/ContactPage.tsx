@@ -30,7 +30,7 @@ export function ContactPage({ onNavigate }: { onNavigate: (page: string) => void
     {
       icon: Mail,
       title: 'Email',
-      details: ['oaklandearlyexp@gmail.com'],
+      details: [' info@oaklandedu.in, principal@oaklandedu.in, admission@oaklandedu.in'],
     },
     {
       icon: Clock,
